@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class tryofmine {
 
-    // clear screen
+    // Clear the screen
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -11,50 +11,69 @@ public class tryofmine {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        // Deklarasi
+        // Declaration
         String nimMhs;
-        String passMhs = "";
+        String passMhs;
         String nama, kelas;
         int semester;
         double poin_akhir = 0;
 
-        // Input NIM dan Password(Login)
+        // Array for login data (NIM and password)
+        String[] loginData = {
+            "2341720075", "1", 
+            "2341720212", "1", 
+            "2341720218", "1", 
+            "2341720016", "1"
+        };
+
         System.out.println("===== Menghitung Nilai Kompen Mahasiswa =====\n");
-        do {
-            System.out.print("Masukkan NIM : ");
+        
+        boolean loginSukses = false;
+        while (!loginSukses) {
+            System.out.print("Masukkan NIM: ");
             nimMhs = input.nextLine();
-            System.out.print("Masukkan Password : ");
+            System.out.print("Masukkan Password: ");
             passMhs = input.nextLine();
-            if (!nimMhs.equals(passMhs)) {
+            
+            boolean found = false;
+            for (int i = 0; i < loginData.length; i += 2) {
+                if (nimMhs.equals(loginData[i]) && passMhs.equals(loginData[i + 1])) {
+                    found = true;
+                    loginSukses = true;
+                    break;
+                }
+            }
+            
+            if (!found) {
                 System.out.println("NIM atau Password salah. Coba lagi.");
             }
-        } while (!nimMhs.equals(passMhs));
-        clearScreen();//clear screen
+        }
+        clearScreen(); // Clear the screen
 
-        // Input data mahasiswa
-        System.out.print("Masukkan Nama : ");
+        // Input student data
+        System.out.print("Masukkan Nama: ");
         nama = input.nextLine();
-        System.out.print("Masukkan Kelas : ");
+        System.out.print("Masukkan Kelas: ");
         kelas = input.nextLine();
-        clearScreen();//clear screen
+        clearScreen(); // Clear the screen
 
         // Menu
-        Boolean sistemKompen = true;
+        boolean sistemKompen = true;
         int menu;
         do {
             System.out.println("\nList Menu [" + nama + "]: ");
-            System.out.println("0. Keluar Program ");
-            System.out.println("1. Perhitungan Kompen Mahasiswa: ");
-            System.out.print("\n Pilih menu: ");
+            System.out.println("0. Keluar Program");
+            System.out.println("1. Perhitungan Kompen Mahasiswa");
+            System.out.print("\nPilih menu: ");
             menu = input.nextInt();
             input.nextLine();
-            clearScreen();//clear screen
+            clearScreen(); // Clear the screen
             switch (menu) {
                 case 0:
                     sistemKompen = false;
                     break;
                 case 1:
-                    // Input semester(pilih semester)
+                    // Input semester (pilih semester)
                     System.out.print("Perhitungan Kompen Mahasiswa");
                     System.out.print("Masukkan Semester (1-8): ");
                     semester = input.nextInt();
@@ -64,7 +83,7 @@ public class tryofmine {
 
                     for (int i = 1; i <= semester; i++) {
                         System.out.println("Anda memilih semester " + i + ".");
-                        System.out.print("Masukkan Kompen Semester " + i + " : ");
+                        System.out.print("Masukkan Kompen Semester " + i + ": ");
                         double kompen = input.nextDouble() * 4;
                         kompenSemester += kompen;
                     }
@@ -72,12 +91,11 @@ public class tryofmine {
                     poin_akhir = kompenSemester;
 
                     // Hasil akhir
-                    System.out.println(nama + " dengan NIM " + nimMhs + " kelas " + kelas + " semester " + semester
-                            + " memiliki nilai kompen akhir " + poin_akhir);
-
+                    System.out.println(nama + " kelas " + kelas + " semester " + semester
+                        + " memiliki nilai kompen akhir " + poin_akhir);
             }
         } while (sistemKompen);
-        System.out.println("\n\nTerimakasih :D");
+        System.out.println("\n\nTerima kasih :D");
 
         // Close the Scanner
         input.close();
