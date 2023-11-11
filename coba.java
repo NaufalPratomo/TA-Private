@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class tryofmine {
+public class coba {
 
     // Clear the screen
     public static void clearScreen() {
