@@ -6,11 +6,16 @@ public class tryofmine {
     // Clear the screen
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
-        System.out.flush();
+        System.out.flush(); 
     }
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+
+    
+    System.out.println("█▀ █▀▀ █░░ ▄▀█ █▀▄▀█ ▄▀█ ▀█▀  █▀▄ ▄▀█ ▀█▀ ▄▀█ █▄░█ █▀▀  █▀▄ █  █▀ █ █▀ ▀█▀ █▀▀ █▀▄▀█  █▄▀ █▀█ █▀▄▀█ █▀█ █▀▀ █▄░█ ");
+    System.out.println("▄█ ██▄ █▄▄ █▀█ █░▀░█ █▀█ ░█░  █▄▀ █▀█ ░█░ █▀█ █░▀█ █▄█  █▄▀ █  ▄█ █ ▄█ ░█░ ██▄ █░▀░█  █░█ █▄█ █░▀░█ █▀▀ ██▄ █░▀█ ");
+
 
         // Deklarasi
         String nimMhs;
@@ -20,7 +25,7 @@ public class tryofmine {
         double poin_akhir = 0;
         int baris=5,kolom=9;
         
-        // List Kompen Setiap Mahasiswa Pada Kelas yang Diinputkan
+        // Array 2D List Kompen Setiap Mahasiswa Pada Kelas yang Diinputkan
     String[][] kompenMhs = {
             { "Nama", "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8" },
             { "Naufal", "2", "0", "1" },
@@ -29,21 +34,22 @@ public class tryofmine {
             { "Valen", "2", "1", "0" },
         };
 
-        // Decoration
-        System.out.println("╔════════════════════════════════════════════╗");
-        System.out.println("║          Menghitung Nilai Kompen           ║");
-        System.out.println("╚════════════════════════════════════════════╝");
-
         // Array for login data (NIM and password)
-        String[] loginData = {
+    String[] loginData = {
             "2341720075", "1", 
             "2341720212", "1", 
             "2341720218", "1", 
             "2341720016", "1",
             "1", "1"
         };
+
+        // Decoration
+        System.out.println("╔════════════════════════════════════════════╗");
+        System.out.println("║          Sistem Kompen Mahasiswa           ║");
+        System.out.println("╚════════════════════════════════════════════╝");
+
         //login
-        System.out.println("===== Menghitung Nilai Kompen Mahasiswa =====\n");
+        System.out.println("===== Sistem Kompen Mahasiswa =====\n");
         boolean loginSukses = false;
         while (!loginSukses) {
             System.out.print("Masukkan NIM: ");
@@ -77,7 +83,9 @@ public class tryofmine {
         System.out.print("Masukkan Kelas: ");
         kelas = input.nextLine();
         clearScreen(); // Clear the screen
-        String[][] newMhs=new String[baris+1][kolom];
+
+        //Fungsi untuk memasukkan input kompen kedalam array 2D list kompen 
+    String[][] newMhs = new String[baris+1][kolom];
         for (int i = 0; i < kompenMhs.length; i++) {
             for (int j = 0; j < kompenMhs[i].length; j++) {
                 newMhs[i][j]=kompenMhs[i][j];
@@ -86,7 +94,7 @@ public class tryofmine {
         kompenMhs=newMhs;
         kompenMhs[baris][0]=nama;
         
-        // Menu
+        // Menu Sistem Kompen
         boolean sistemKompen = true;
         int menu;
         do {
@@ -133,7 +141,7 @@ public class tryofmine {
                     System.out.println(nama + " kelas " + kelas + " semester " + semester
                             + " memiliki nilai kompen akhir " + poin_akhir);
                 case 2:
-                    // Cetak array 2D
+                    // Cetak array 2D list kompen
                     for (int i = 0; i < kompenMhs.length; i++) {
                         for (int j = 0; j < kompenMhs[i].length; j++) {
                             if (kompenMhs[i][j]==null) {
